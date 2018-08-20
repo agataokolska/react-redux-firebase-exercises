@@ -1,24 +1,35 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import{ displayTextAction, inputAction} from './state/smartComponent'
 
-const SmartComponent = (props)=> (
+const SmartComponent = (props) => (
 
-            <div>
-                <p>{props.displayedText}</p>
+    <div>
+        <p>{props.displayedText}</p>
 
-                <input
-                    type={'text'}
-                    placeholder={'wpisz tekst'}
-                    onChange={props.onChangeHandler}
-                    value={props.inputText}
-                />
-                <button
-                    onClick={props.onClickHandler}
+        <input
+            type={'text'}
+            placeholder={'wpisz tekst'}
+            onChange={props.onChangeHandler}
+            value={props.inputText}
+        />
+        <button
+            onClick={props.onClickHandler}
 
-                >
-                    pokaż tekst!
+        >
+            pokaż tekst!
             </button>
-            </div>
- 
-)
+    </div>
 
-export default SmartComponent
+)
+const mapStateToProps = state => ({
+    displayedText: state.smartComponent.displayedText,
+    inputText: state.smartComponent.inputText
+})
+
+const mapDispatchToProps = dispatch => ({
+    onChangeHandler: event => dispatch(inputAction(event.target.value)),
+    onClickHandler: () => dispatch(displayTextAction())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SmartComponent)
