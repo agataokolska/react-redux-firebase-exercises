@@ -11,7 +11,7 @@ class SmartComponent extends React.Component {
             inputText: event.target.value
         })
     }
-    onClickHandler = () => {
+    onClickHandler = () => {                 // this.setState((prevState,props)=>({displayedText:prevState.input}))
         this.setState({
             displayedText:this.state.inputText
         })
