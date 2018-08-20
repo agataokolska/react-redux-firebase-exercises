@@ -1,14 +1,13 @@
-import { combineReducers, createStore } from ''
+import { createStore, combineReducers, compose } from 'redux'
 import smartComponent from './state/smartComponent'
 
-const reducer = combineReducers(
+const reducer = combineReducers({
     smartComponent
-)
+})
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-
-const store = createStore(
+export const store = createStore(
     reducer,
     composeEnhancers()
 )
