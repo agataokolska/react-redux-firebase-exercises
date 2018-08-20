@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import SmartComponent from './SmartComponent'
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
             
             <Link to={'/hello'}>Hello</Link>
             <Link to={'/hello/world'}>World</Link>
-
+            <Link to={'/smart'}>Smart</Link>
             <Route path={'/hello/world'} component={World} />
+            <Route path={'/smart'} component={SmartComponent} />
             <Route path={'/hello'} component={Hello} />
             <Route path={'/'} exact component={Hello} />
           </div>
