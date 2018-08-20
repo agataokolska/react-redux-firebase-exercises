@@ -1,4 +1,4 @@
-import {database} from '../firebaseConfig'
+import { database } from '../firebaseConfig'
 
 const SET_USERS = 'users/SET_USERS'
 
@@ -9,14 +9,17 @@ const initialState = {
 
 }
 
-export const initUserSyncAction = () =>(dispatch, getState)=> {
+export const initUserSyncAction = () => (dispatch, getState) => {
     database.ref('/jfddl5-users')
-    .on(
-        'value',
-        snapshot => {
-            dispatch(userAction(snapshot.val()))
-        }
-    )
+        .on(
+            'value',
+            snapshot => {
+                dispatch(userAction(snapshot.val()))
+            }
+        )
+}
+export const stopUserSyncAction = () => (dispatch, getState)=> {
+    database.ref('/jfddl5-users').off()
 }
 
 export default (state = initialState, action) => {
