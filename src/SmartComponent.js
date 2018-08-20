@@ -1,27 +1,24 @@
 import React from 'react'
 
-class SmartComponent extends React.Component {
-   
-    render() {
-        return (
+const SmartComponent = (props)=> (
+
             <div>
-                <p>{this.state.displayedText}</p>
+                <p>{props.displayedText}</p>
 
                 <input
                     type={'text'}
                     placeholder={'wpisz tekst'}
-                    onChange={this.onChangeHandler}
-                    value={this.state.inputText}
+                    onChange={props.onChangeHandler}
+                    value={props.inputText}
                 />
                 <button
-                    onClick={this.onClickHandler}
+                    onClick={props.onClickHandler}
 
                 >
                     pokaż tekst!
             </button>
             </div>
-        )
-    }
-}
+ 
+)
 
 export default SmartComponent
