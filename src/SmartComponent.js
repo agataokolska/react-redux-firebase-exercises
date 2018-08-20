@@ -1,21 +1,7 @@
 import React from 'react'
 
 class SmartComponent extends React.Component {
-    state = {
-        inputText: '',
-        displayedText: ''
-    }
-
-    onChangeHandler = (event) => {
-        this.setState({
-            inputText: event.target.value
-        })
-    }
-    onClickHandler = () => {                 // this.setState((prevState,props)=>({displayedText:prevState.input}))
-        this.setState({
-            displayedText:this.state.inputText
-        })
-    }
+   
     render() {
         return (
             <div>
