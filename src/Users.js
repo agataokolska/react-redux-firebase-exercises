@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { initUserSyncAction, stopUserSyncAction } from './state/users'
+import { initUserSyncAction, stopUserSyncAction, addCowToListAction, deleteUserAction } from './state/users'
 
 class Users extends Component {
 
@@ -14,23 +14,41 @@ class Users extends Component {
     }
 
 
-
-    render() {
-        return (
-            this.props.users === null ?
-                'Ładowanie userów...'
-                :
-                Object.entries(this.props.users)  //zmienia obiekt na tablice (struktura w bazie users->key ->name)
-                    .map(([key, value]) => ({
-                        ...value,
-                        key
-                    }))
-                    .map(user => (
-                        <div
-                            key={user.key}
-                        >{user.name}</div>
-                    )))
-    }
+render() {
+    return (
+      <div>
+        {
+          this.props.users === null ?
+            'Ładowanie userów...'
+            :
+            Object.entries(this.props.users) //zmienia obiekt na tablice (struktura w bazie users->key ->name)
+              .map(([key, value]) => ({
+                ...value,
+                key
+              }))
+              .map(user => (
+                <div
+                  key={user.key}
+                >
+                  {user.name}
+                  <button
+                    onClick={() => this.props.deleteUserAction(user.key)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))
+        }
+        <div>
+          <button
+            onClick={this.props.addCowToListAction}
+          >
+            Add "Krowa" to List!
+          </button>
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
@@ -39,7 +57,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     initUserSyncAction: () => dispatch(initUserSyncAction()),
-    stopUserSyncAction: () => dispatch(stopUserSyncAction())
+    stopUserSyncAction: () => dispatch(stopUserSyncAction()),
+    addCowToListAction: () => dispatch(addCowToListAction()),
+    deleteUserAction: (key) => dispatch(deleteUserAction(key))
 })
 
 export default connect(
